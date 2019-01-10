@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="center">
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td>Title:</td>
+      <td><a href="{% url 'new_district_view' event.id %}">{{ event.workshop_title }}</a></td>
+      <td>Date:</td>
+      <td>{{ event.event_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

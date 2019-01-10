@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load bootstrap4 %}       {# import bootstrap4/bootstrap3 #}
+{% bootstrap_css %}         {# Embed Bootstrap CSS #}
+{% bootstrap_javascript jquery='full' %}  {# Embed Bootstrap JS+jQuery #}
+{{ form.media }}            {# Adds date-picker required JS and CSS #}
+{% include 'event_record.html' %}
+<p>&nbsp;</p>
+{% if target > 0 %}
+  <p style="color:red; text-align:center;">{{ target }} attendees are not assigned to a district.</p>
+{% elif target < 0 %}
+  <p style="color:red; text-align:center;">You have {{ target }} attendees too many assigned to a district.</p>
+{% else %}
+  <p>&nbsp;</p>
+{% endif %}
+<table width="900" class="center">
+  <tbody>
+    <form action='.' method='POST'>{% csrf_token %}
+      <tr>
+        <th>District Name</th>
+        <th>Number Registered</th>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      {% for district in districts %}
+      <tr>
+        <td><a href="{% url 'delete_district' district.id %}"><img height="12px" src="{% static 'reports/delete.png' %}" /></a> {{ district.district_name }}</td>
+        <td>{{ district.number_attended }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>{% bootstrap_field new_district.district_name %}</td>
+        <td>{% bootstrap_field new_district.number_attended %}</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align:center; color:red;">{% bootstrap_form_errors new_district %}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{% bootstrap_button "Save District" button_type="submit" button_class="btn-primary" %}</td>
+      </tr>
+      </form>
+    </tbody>
+  </table>
+{% endblock %}

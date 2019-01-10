@@ -1,0 +1,16 @@
+{% load static %}
+<!doc-type html>
+<html>
+  <head>
+    <title>My Project</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'reports/css/styles.css' %}">
+  </head>
+  <body>
+    <p><img class="logo" src="{% static 'reports/hcde_logo.jpg' %}" /></p>
+    <p><h3>Service Delivery Data Reporter</h3></p>
+    <p>&nbsp;</p>
+    {% block content %}
+    replace me
+    {% endblock %}
+  </body>
+</html>

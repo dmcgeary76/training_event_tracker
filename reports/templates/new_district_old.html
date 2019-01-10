@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<table width="900" class="center">
+  <tbody>
+    <tr>
+      <td><b>Content Area</b>: {{ event.content_area }}</td>
+      <td><b>Event Date</b>: {{ event.event_date }}</td>
+      <td><b>Location</b>: {% if event.location == 1 %}Irvington{% else %}Off-site / Contract{% endif %}</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><b>Workshop Number</b>: {{ event.workshop_number }}</td>
+      <td><b>Cost/Person</b>: ${{ event.cost_per_person }}</td>
+    </tr>
+    <tr></tr>
+  </tbody>
+</table>
+<p />
+<table width="900" class="center">
+  <tbody>
+    <form action='.' method='POST'>{% csrf_token %}
+      <tr>
+        <th>District Name</th>
+        <th>Number Registered</th>
+        <th>Number No-Shows</th>
+      </tr>
+      {% for district in districts %}
+      <tr>
+        <td>{{ district.district_name }}</td>
+        <td>{{ district.number_registered }}</td>
+        <td>{{ district.number_of_noshows }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>{{ new_district.district_name }}</td>
+        <td>{{ new_district.number_registered }}</td>
+        <td>{{ new_district.number_of_noshows }}</td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align:center; color:red;">{{ new_district.non_field_errors }}</td>
+      </tr>
+      <tr>
+        <td colspan="3"><input type="hidden" name="event_id" value="{{ event_id }}" /><input type='submit' value='Add District' /></td>
+      </tr>
+      </form>
+    </tbody>
+  </table>
+{% endblock %}

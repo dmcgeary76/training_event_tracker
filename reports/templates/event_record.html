@@ -1,0 +1,26 @@
+<table width="900" class="center">
+  <tbody>
+    <tr>
+      <td><b>Content Area</b>: </td>
+      <td>{{ profile.content_area }}</td>
+      <td><b>Event Date</b>: </td>
+      <td>{{ profile.event_date }}</td>
+      <td><b>Location</b>: </td>
+      <td>{% if profile.event_location == '1' %}Irvington{% else %}Contract / Off-Site{% endif %}</td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+      <td><b>Workshop Number</b>: </td>
+      <td>{{ profile.workshop_number }}</td>
+      <td><b>Cost/Person</b>: </td>
+      <td>${{ profile.cost_per_person }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+      <td><b>Number Registered</b>: </td>
+      <td>{{ profile.number_registered }}</td>
+      <td><b>Number of No-Shows</b>: </td>
+      <td>{{ profile.number_of_noshows }}</td>
+    </tr>
+  </tbody>
+</table>

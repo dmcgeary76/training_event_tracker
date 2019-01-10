@@ -1,0 +1,14 @@
+{% load static %}
+<!doc-type html>
+<html>
+  <head>
+    <title>My Project</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+  </head>
+  <body>
+    <img src="{% static 'tlc_logo.png' %}" />
+    {% block content %}
+    replace me
+    {% endblock %}
+  </body>
+</html>
